@@ -19,6 +19,24 @@
   --fd:\'Syne\',sans-serif;--fm:\'Space Mono\',monospace;
   --sidebar:260px;
 }
+body.light {
+  --bg:#f0f4f8;--bg2:#e8edf4;--bg3:#dde4ee;
+  --surface:#ffffff;--surface2:#eaf0f8;
+  --border:rgba(2,132,199,0.14);--border2:rgba(2,132,199,0.3);
+  --accent:#0284c7;--accent2:#7c3aed;--accent3:#059669;--accent4:#ea580c;--accent5:#db2777;
+  --text:#1a202c;--text2:#4a5568;--text3:#94a3b8;
+  --easy:#059669;--medium:#ea580c;--hard:#dc2626;
+  --easy-bg:rgba(5,150,105,0.1);--medium-bg:rgba(234,88,12,0.1);--hard-bg:rgba(220,38,38,0.1);
+}
+body.light::before {
+  background-image:linear-gradient(rgba(2,132,199,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(2,132,199,0.05) 1px,transparent 1px);
+}
+body.light #sidebar {
+  background:rgba(236,242,250,0.98);
+}
+body.light #topbar {
+  background:rgba(240,244,248,0.92);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:var(--fd);min-height:100vh;overflow-x:hidden;display:flex;}
@@ -326,6 +344,9 @@ footer{
       <button class="pill hard" data-diff="hard">Hard</button>
     </div>
     <div class="topbar-right">
+      <button class="vbtn" id="themeBtn" title="Toggle light/dark mode" onclick="toggleTheme()">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <button class="vbtn active" id="gridBtn" title="Grid view">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       </button>
@@ -982,6 +1003,21 @@ document.getElementById("listBtn").addEventListener("click",()=>{
   document.getElementById("gridBtn").classList.remove("active");
   renderMain();
 });
+
+// ── THEME TOGGLE ──
+const sunIcon=`<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+const moonIcon=`<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+function toggleTheme(){
+  const isLight=document.body.classList.toggle('light');
+  localStorage.setItem('theme',isLight?'light':'dark');
+  document.getElementById('themeBtn').innerHTML=isLight?moonIcon:sunIcon;
+}
+(function initTheme(){
+  if(localStorage.getItem('theme')==='light'){
+    document.body.classList.add('light');
+    document.getElementById('themeBtn').innerHTML=moonIcon;
+  }
+})();
 
 updateStats();
 renderSidebar();
