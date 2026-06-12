@@ -1,5 +1,7 @@
 # 🗄️ DSA Pattern Vault
 
+**Live:** https://kishan-kumar-zalavadia.github.io/DSA-Leetcode-Pattern-Vault/
+
 A sleek, single-file interactive reference for mastering Data Structures & Algorithms — organized by pattern, sorted by difficulty, and built to survive interview season.
 
 ![DSA Pattern Vault](https://img.shields.io/badge/Patterns-39-63d2ff?style=flat-square) ![Problems](https://img.shields.io/badge/Problems-250%2B-a78bfa?style=flat-square) ![Easy](https://img.shields.io/badge/Easy-36-34d399?style=flat-square) ![Medium](https://img.shields.io/badge/Medium-149-fb923c?style=flat-square) ![Hard](https://img.shields.io/badge/Hard-67-f87171?style=flat-square) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
